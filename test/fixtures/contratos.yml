@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dataInicio: 2022-07-03
+  dataFim: 2022-07-03
+  valor: 1.5
+  cliente: one
+  veiculo: one
+
+two:
+  dataInicio: 2022-07-03
+  dataFim: 2022-07-03
+  valor: 1.5
+  cliente: two
+  veiculo: two
