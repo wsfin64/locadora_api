@@ -33,7 +33,7 @@ class Contrato < ApplicationRecord
     diferenca = (hoje - self.dataFim).to_i
 
     if diferenca > 0
-      multa = (0.05 * self.valor) * diferenca
+      multa = (0.5 * self.valor) * diferenca
       
       return multa
     end
