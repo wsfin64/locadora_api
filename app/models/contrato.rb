@@ -3,28 +3,32 @@ class Contrato < ApplicationRecord
   belongs_to :veiculo
 
   def registrar_devolucao
-    
-    hoje = Date.today
 
-    self.dataDevolucao = hoje
-    
-    self.juros = calcular_juros
+    if baixa
+      hoje = Date.today
 
-    #self.valorTotal = calcular_valor_total
+      self.dataDevolucao = hoje
+      
+      self.juros = calcular_juros
 
-    puts "VALOR TOTAL ANTES DO JUROS #{self.valorTotal}"
+      #self.valorTotal = calcular_valor_total
 
-    puts "TOTAL JUROS #{self.juros}"
+      puts "VALOR TOTAL ANTES DO JUROS #{self.valorTotal}"
 
-    
-    if dias_atraso > 0
-      total_final = self.valorTotal + (dias_atraso * self.valor) + self.juros
-      self.valorTotal = total_final
+      puts "TOTAL JUROS #{self.juros}"
+
+      
+      if dias_atraso > 0
+        total_final = self.valorTotal + (dias_atraso * self.valor) + self.juros
+        self.valorTotal = total_final
+      end
+
+      puts "VALOR TOTAL DEPOIS DO JUROS #{self.valorTotal}"
+
+      self.baixa = false
+
+      self.save
     end
-
-    puts "VALOR TOTAL DEPOIS DO JUROS #{self.valorTotal}"
-
-    self.save
     
   end
 
