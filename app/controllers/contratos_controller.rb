@@ -27,10 +27,9 @@ class ContratosController < ApplicationController
 
   # PATCH/PUT /contratos/1
   def update
-    @contrato.calcular_valor_total
-    @contrato.registrar_devolucao
     
     if @contrato.update(contrato_params)
+      @contrato.registrar_devolucao
       render json: @contrato
     else
       render json: @contrato.errors, status: :unprocessable_entity
@@ -50,6 +49,6 @@ class ContratosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contrato_params
-      params.require(:contrato).permit(:dataInicio, :dataFim, :valor, :cliente_id, :veiculo_id)
+      params.require(:contrato).permit(:dataInicio, :dataFim, :valor, :cliente_id, :veiculo_id, :valorTotal)
     end
 end
