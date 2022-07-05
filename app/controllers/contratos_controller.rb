@@ -16,6 +16,7 @@ class ContratosController < ApplicationController
   # POST /contratos
   def create
     @contrato = Contrato.new(contrato_params)
+    @contrato.calcular_valor_total
 
     if @contrato.save
       render json: @contrato, status: :created, location: @contrato
@@ -26,6 +27,9 @@ class ContratosController < ApplicationController
 
   # PATCH/PUT /contratos/1
   def update
+    @contrato.calcular_valor_total
+    @contrato.registrar_devolucao
+    
     if @contrato.update(contrato_params)
       render json: @contrato
     else
