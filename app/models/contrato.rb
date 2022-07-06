@@ -56,10 +56,21 @@ class Contrato < ApplicationRecord
 
   def dias_atraso
     hoje = Date.today
-    diferenca = (hoje - self.dataFim).to_i
+    
+    if atraso(self.dataFim, hoje)
+      diferenca = (hoje - self.dataFim).to_i
 
-    return diferenca
+      return diferenca  
+    end 
+
+    return 0
   end
 
+  def atraso(data_prevista, data_entrega)
+    if data_entrega > data_prevista
+      return true
+    end
+    return false
+  end
 
 end
